@@ -33,7 +33,7 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           BUCKET_NAME: ${{secrets.BUCKET_NAME}}
           ZIP_KEY: ${{secrets.ZIP_KEY}}
-          PRACTICE_DAGSHUB_TOKEN: ${{secrets.PRACTICE_DAGSHUB_TOKEN}}
+          PRACTICE_DAGSHUB_TOKEN: ${{secrets.practice_dagshub_token}}
         run: |
           dvc repro
 
