@@ -1,0 +1,88 @@
+schema: '2.0'
+stages:
+  data_ingestion:
+    cmd: python -m src.core.data.data_ingestion
+    deps:
+    - path: src/core/data/data_ingestion.py
+      hash: md5
+      md5: 7441a7ad15ec209e84e60ccd9175b2e5
+      size: 2620
+    outs:
+    - path: output/raw
+      hash: md5
+      md5: 7746d17dd3ea2e20ad5682e1185b59c7.dir
+      size: 5575447
+      nfiles: 1
+  data_preprocessing:
+    cmd: python -m src.core.data.data_preprocessing
+    deps:
+    - path: output/raw
+      hash: md5
+      md5: 7746d17dd3ea2e20ad5682e1185b59c7.dir
+      size: 5575447
+      nfiles: 1
+    - path: src/core/data/data_preprocessing.py
+      hash: md5
+      md5: 8885114451329b65fd6ce8c4af9d0cde
+      size: 4338
+    outs:
+    - path: output/processed_data
+      hash: md5
+      md5: 005e6d26feeaa0918ce5eeeaf6dfc133.dir
+      size: 5575447
+      nfiles: 1
+  feature_engineering:
+    cmd: python -m src.core.data.feature_engineering
+    deps:
+    - path: output/processed_data
+      hash: md5
+      md5: 005e6d26feeaa0918ce5eeeaf6dfc133.dir
+      size: 5575447
+      nfiles: 1
+    - path: src/core/data/feature_engineering.py
+      hash: md5
+      md5: 1aa6f34c273d3d6278bd73a3b7b249f4
+      size: 6941
+    outs:
+    - path: output/feature_engineered_data
+      hash: md5
+      md5: a7a0c68a915733922521b9c4841e2760.dir
+      size: 20005303
+      nfiles: 2
+  model_building:
+    cmd: python -m src.core.data.model_building
+    deps:
+    - path: output/feature_engineered_data
+      hash: md5
+      md5: a7a0c68a915733922521b9c4841e2760.dir
+      size: 20005303
+      nfiles: 2
+    - path: src/core/data/model_building.py
+      hash: md5
+      md5: 8b6920c4d5b71d3679713368799d18ef
+      size: 4072
+    outs:
+    - path: models/logistic_regression.pkl
+      hash: md5
+      md5: ec5de8d6e2184af8e521a0a6c29fcd13
+      size: 1371
+  model_evaluation:
+    cmd: python -m src.core.data.model_evaluation
+    deps:
+    - path: models/logistic_regression.pkl
+      hash: md5
+      md5: ec5de8d6e2184af8e521a0a6c29fcd13
+      size: 1371
+    - path: src/core/data/model_evaluation.py
+      hash: md5
+      md5: 35033e391aa9a93e878ca53cc2e8e8bd
+      size: 6739
+    outs:
+    - path: reports/metrics.json
+      hash: md5
+      md5: 5c4f5b0560950d512d32fbdb3c619a7e
+      size: 126
+    - path: reports/model_info.json
+      hash: md5
+      md5: 9e9c4a1469599e962e8953b754278d68
+      size: 109

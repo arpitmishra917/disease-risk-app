@@ -1,0 +1,39 @@
+1.  create git hub repo and clone it-git clone "your link"
+
+2.  make virtual enviornment and activate it 
+        python virtual enviornment- python -m venv myenv
+        delete python virtual enviornment-  rmdir /s /q myenv
+        list down python enviornment- you cannot list down python enviornment
+        but Manually check python enviornment where you created them- dir /s /b venv
+        activate python enviornment- myenv\Scripts\activate
+        deactivate python enviornment- deactivate
+        conda virtual enviornment- conda create -n myenv python=3.10
+        delete conda virtual enviornment- conda remove --name myenv --all
+        list down conda enviornment- conda info --envs
+        activate conda enviornment- conda activate myenv
+        deactivate conda enviornment- deactivate
+
+
+3.  create requirements.txt file,add below requirements and install them- pip install -r requirements.txt
+        numpy
+        pandas
+        scikit-learn
+        matplotlib
+        seaborn
+        xgboost
+        lightgbm
+        catboost
+        tensorflow
+        keras
+        torch
+        fastapi
+        uvicorn
+        joblib
+        mlflow
+
+2.  create experiments folder and in it make base_exp.ipynb and take out the best performing model.
+
+3.  create one more file exp1.ipynbs into experiments and look for best parameters and features.
+
+4.  create src folder and add their code.
+

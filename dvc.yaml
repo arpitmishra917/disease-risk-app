@@ -1,0 +1,45 @@
+stages:
+  data_ingestion:
+    cmd: python -m src.core.data.data_ingestion
+    deps:
+    - src/core/data/data_ingestion.py
+    # params:
+    # - data_ingestion.test_size
+    outs:
+    - output/raw
+
+  data_preprocessing:
+    cmd: python -m src.core.data.data_preprocessing
+    deps:
+    - output/raw
+    - src/core/data/data_preprocessing.py
+    outs:
+    - output/processed_data
+
+  feature_engineering:
+    cmd: python -m src.core.data.feature_engineering
+    deps:
+    - output/processed_data
+    - src/core/data/feature_engineering.py
+    # params:
+    # - feature_engineering.max_features
+    outs:
+    - output/feature_engineered_data
+
+  model_building:
+    cmd: python -m src.core.data.model_building
+    deps:
+    - output/feature_engineered_data
+    - src/core/data/model_building.py
+    outs:
+    - models/logistic_regression.pkl
+
+  model_evaluation:
+    cmd: python -m src.core.data.model_evaluation
+    deps:
+    - models/logistic_regression.pkl
+    - src/core/data/model_evaluation.py
+    metrics:
+    - reports/metrics.json
+    outs:
+    - reports/model_info.json  # Add the model_info.json file as an output
