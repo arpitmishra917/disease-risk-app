@@ -19,13 +19,13 @@ jobs:
         uses: actions/cache@v3
         with:
           path: ~/.cache/pip
-          key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
+          key: ${{ runner.os }}-pip-${{ hashFiles('requirement.txt') }}
           restore-keys: |
             ${{ runner.os }}-pip-
 
       - name: install dependencies
         run: |
-          pip install -r requirements.txt
+          pip install -r requirement.txt
 
       - name: run pipeline
         env:
