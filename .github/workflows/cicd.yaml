@@ -3,7 +3,7 @@ name: CICD Pipeline
 on: push
 
 jobs:
-  project-testing:
+  Continuous-Integration:
     runs-on: ubuntu-latest
 
     steps:
