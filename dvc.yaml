@@ -34,12 +34,12 @@ stages:
     outs:
     - models/logistic_regression.pkl
 
-  model_evaluation:
-    cmd: python -m src.core.data.model_evaluation
-    deps:
-    - models/logistic_regression.pkl
-    - src/core/data/model_evaluation.py
-    metrics:
-    - reports/metrics.json
-    outs:
-    - reports/model_info.json  # Add the model_info.json file as an output
+  # model_evaluation:
+  #   cmd: python -m src.core.data.model_evaluation
+  #   deps:
+  #   - models/logistic_regression.pkl
+  #   - src/core/data/model_evaluation.py
+  #   metrics:
+  #   - reports/metrics.json
+  #   outs:
+  #   - reports/model_info.json  # Add the model_info.json file as an output
